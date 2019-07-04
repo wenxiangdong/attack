@@ -10,10 +10,10 @@ model = keras.models.load_model("model.h5")
 
 def random_attack(image, max_time=500):
     label = get_label(image)
-    for loop in range(3):
+    for loop in range(5):
         new_image = change_cross_random(image, r=loop + 1)
         i = 0
-        while (get_label(new_image) == label or ssim.SSIM(new_image, image) < 0.8) and i < max_time:
+        while (get_label(new_image) == label or ssim.SSIM(new_image, image) < 0.7) and i < max_time:
             i += 1
             new_image = change_cross_random(image, r=loop + 1)
         if i < max_time:
